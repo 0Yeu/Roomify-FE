@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "968438155126",
+    "project_id": "vlrnbase-staging",
+    "storage_bucket": "vlrnbase-staging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968438155126:android:dc6bcb6088c6c57c8a9c57",
+        "android_client_info": {
+          "package_name": "com.demo.vlrnbase.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968438155126-9i01k8ver40n3gb0febo5m1286vpcgge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKM0V91Ih6mglRhGi9uKST-efo5Ugws3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968438155126-9i01k8ver40n3gb0febo5m1286vpcgge.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "968438155126-1die2cd6nm0ianl4j9ncve7c924tbavi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.demo.vlrnbase.staging"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

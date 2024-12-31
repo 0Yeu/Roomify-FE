@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1007114215374-kj3spg2epmgoe3q88b8hr061f9c0sli6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1007114215374-kj3spg2epmgoe3q88b8hr061f9c0sli6</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1007114215374-20vhrrnjd2hoqt7dauivj2pirsnv2mrr.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDxE4ECZpYoDd_RFfU2DRkOPv1L1PHgsq8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1007114215374</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.demo.vlrnbase</string>
+	<key>PROJECT_ID</key>
+	<string>vlrnbase</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vlrnbase.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1007114215374:ios:a6f39a1ba7953fd529d59f</string>
+	<key>DATABASE_URL</key>
+	<string>https://vlrnbase.firebaseio.com</string>
+</dict>
+</plist>

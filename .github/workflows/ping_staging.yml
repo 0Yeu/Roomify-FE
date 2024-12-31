@@ -1,0 +1,16 @@
+name: Ping Staging
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  ping-pong:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PING - Dispatch initiating repository event
+        run: |
+          curl -X POST https://api.github.com/repos/longly151/RNDeployBase/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.PING_ACCESS_TOKEN }} \
+          --data '{"event_type": "VLRNBase_ping_staging", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "ping_access_token": "PING_ACCESS_TOKEN", "env": "VLRNBASE_ENV_STAGING", "fastlane_android_env": "VLRNBASE_FASTLANE_ANDROID_ENV", "fastlane_ios_env": "VLRNBASE_FASTLANE_IOS_ENV" }}'

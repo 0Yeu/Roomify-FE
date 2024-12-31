@@ -1,0 +1,30 @@
+{
+    "With Pure Example": {
+        "description": "WithPure",
+		"scope": "typescriptreact",
+        "prefix": "hocWithPure",
+        "body": [
+            "import React from 'react';",
+            "",
+            "interface ${1:WithPureExample}Props {",
+            "}",
+            "",
+            "const ${1/^([A-Z])/${1:/downcase}/} = (",
+            "  { data }: {",
+            "    data: any,",
+            "  }",
+            ") => <P extends object>(",
+            "  WrappedComponent: React.ComponentType<P>",
+            ") => {",
+            "  class $1 extends React.Component<P & $1Props, any> {",
+            "    render() {",
+            "      return <WrappedComponent {...this.props as P} {...this.state} />;",
+            "    }",
+            "  }",
+            "  return $1;",
+            "};",
+            "export default ${1/^([A-Z])/${1:/downcase}/};",
+            ""
+        ],
+    }
+}

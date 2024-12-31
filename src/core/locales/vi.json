@@ -1,0 +1,184 @@
+{
+  "common": {
+    "key": "vi",
+    "theme": "Chủ đề",
+    "language": "Ngôn ngữ",
+    "cancel": "Huỷ bỏ",
+    "ok": "Đồng ý",
+    "done": "Hoàn tất",
+    "no_internet": "Không có kết nối Internet",
+    "continue": "Tiếp tục",
+    "save": "Lưu",
+    "lets_get_started": "Bắt đầu!",
+    "version": "Phiên bản",
+    "date_format": "DD MMM, YYYY",
+    "time_format": "hh:mm A",
+    "submit": "Gửi",
+    "submit_success": "Yêu cầu đã được gửi thành công",
+    "select": "Chọn",
+    "reload": "Tải lại",
+    "required_fields": "Vui lòng điền các trường còn trống!"
+  },
+  "component": {
+    "file_view_button": {
+      "updated_at": "Cập nhật ngày {{updatedAt}}"
+    },
+    "date_time_picker": {
+      "date": "ngày",
+      "time": "giờ",
+      "datetime": "ngày và giờ",
+      "pick": "Chọn {{mode}}"
+    },
+    "flat_list": {
+      "empty": "Danh sách rỗng"
+    },
+    "editable_image": {
+      "upload_photo": "Tải ảnh lên",
+      "take_photo": "Chụp ảnh",
+      "select_from_album": "Chọn từ Album"
+    },
+    "input": {
+      "default_label": "thông tin",
+      "input": "Nhập {{field}}",
+      "invalid": "{{field}} không hợp lệ",
+      "search_placeholder": "Nhập nội dung..."
+    },
+    "loading": {
+      "loading": "Vui lòng đợi"
+    },
+    "map": {
+      "pick_location": "Chọn vị trí"
+    },
+    "picker": {
+      "choose_province": "Chọn tỉnh thành",
+      "choose_language": "Chọn ngôn ngữ",
+      "choose_title": "Chọn tiêu đề",
+      "choose_image": "Chọn hình ảnh"
+    }
+  },
+  "permission_denied": {
+    "go_to_settings": "Đi tới cài đặt",
+    "camera": "Để truy cập tính năng này, bạn cần cho phép \"{{appName}}\" sử dụng camera của bạn",
+    "photo_library": "Để truy cập tính năng này, bạn cần cho phép \"{{appName}}\" truy cập vào thư viện của bạn",
+    "location": "Để có thể sử dụng toàn bộ tính năng của bản đồ, bạn cần cho phép \"{{appName}}\" truy cập vào vị trí hiện tại của bạn"
+  },
+  "exception": {
+    "400": "Thông tin không hợp lệ. Vui Lòng kiểm tra lại",
+    "401": "Số điện thoại hoặc mật khẩu không chính xác",
+    "403": "Tài khoản hiện tại không có quyền truy cập vào trang này",
+    "404": "Nội dung hiện không có sẵn. Vui lòng thử lại sau",
+    "408": "Mạng không ổn định. Vui lòng thử lại sau",
+    "500": "Đã có lỗi xảy ra. Vui lòng thử lại sau",
+    "502": "Máy chủ đang được bảo trì. Vui lòng thử lại sau"
+  },
+  "bottom_tab": {
+    "home": "Trang chủ",
+    "more": "Cài đặt",
+    "explore": "Khám phá",
+    "saved": "Yêu thích",
+    "notification": "Thông báo",
+    "profile": "Cài đặt",
+    "roommate": "Ở ghép"
+  },
+  "header": {
+    "settings": "Cài đặt",
+    "more": "Nhiều hơn",
+    "example": "Danh sách các component"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "login_mobile": "Đăng nhập với SĐT",
+    "forgot": "Quên mật khẩu?",
+    "register": "Đăng ký",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất",
+    "or": "hoặc",
+    "facebook": "Đăng nhập với Facebook",
+    "google": "Đăng nhập với Google",
+    "have_account": "Bạn chưa có tài khoản?",
+    "already_account": "Đã có tài khoản?",
+    "description_forgot": "Nhập Email. Chúng tôi sẽ gửi hướng dẫn khôi phục mật khẩu qua Email của bạn",
+    "button_login_mobile": "Nhận mã",
+    "title_verify": "Xác thực tài khoản của bạn",
+    "get_back_verify": "Gửi lại mã OTP?",
+    "send_verify": "Gửi",
+    "button_verify": "Xác nhận ngay bây giờ",
+    "fill_verify_otp": "Vui lòng xác nhận OTP",
+    "success_verify_otp": "Đã xác nhận",
+    "resend_otp": "Gửi lại mã OTP"
+  },
+  "field": {
+    "title": "Tiêu đề",
+    "birthday": "Ngày sinh",
+    "email": "Email",
+    "programming_language": "Ngôn ngữ lập trình",
+    "post": "Nhập nội dung...",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "cover_image": "Ảnh bìa",
+    "electricity_fee": "Tiền điện",
+    "water_fee": "Tiền nước",
+    "internet_fee": "Phí Internet",
+    "parking_fee": "Phí giữ xe",
+    "property_category": "Loại phòng",
+    "select_city": "Chọn tỉnh/ thành phố",
+    "select_district": "Chọn quận/ huyện",
+    "select_sub_district": "Chọn phường/ xã",
+    "street_name": "Tên đường",
+    "house_number": "Số nhà",
+    "price": "Gía tiền",
+    "area": "Diện tích",
+    "description": "Nội dung mô tả",
+    "image": "Hình ảnh",
+    "amenity": "Tiện ích"
+  },
+  "placeholder": {
+    "title": "Tiêu đề",
+    "birthday": "Ngày sinh",
+    "email": "Email",
+    "programming_language": "Chọn ngôn ngữ lập trình",
+    "post": "Nhập nội dung...",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "cover_image": "Chọn ảnh bìa",
+    "full_name" : "Họ và tên",
+    "phone": "Số điện thoại"
+  },
+  "validator": {
+    "required": "{{field}} không được để trống",
+    "invalid": "{{field}} không hợp lệ",
+    "min": " Bạn cần nhập thêm {{remain}} ký tự",
+    "max": "{{field}} không được dài hơn {{max}} ký tự",
+    "too_short": "Mật khẩu quá ngắn!",
+    "not_match": "Mật khẩu không trùng khớp",
+    "invalid_email": "Email không hợp lệ",
+    "is_string": "{{field}} phải có dạng chuỗi",
+    "is_number": "{{field}} phải có dạng số",
+    "is_datetime": "{{field}} phải có dạng ngày tháng",
+    "is_object": "{{field}} phải là một đối tượng",
+    "greater_than": "{{field}} phải lớn hơn {{value}}",
+    "less_than": "{{field}} phải nhỏ hơn {{value}}",
+    "invalid_phone": "Số điện thoại không hợp lệ"
+  },
+  "profile": {
+    "mine" : "Tài khoản của tôi",
+    "setting": "Cài đặt",
+    "rent_your_home": "Cho thuê nhà của bạn",
+    "looking_for_room": "Tìm kiếm phòng",
+    "register_owner": "Đăng ký làm chủ nhà",
+    "my_room": "Phòng trọ của tôi",
+    "room_is_booked": "Danh sách khu trọ được đặt",
+    "ls_u_have_booked": "Danh sách phòng bạn đã đặt",
+    "suggest_login": "Đăng nhập để trải nghiệm nhiều hơn với Roomify",
+    "get_help": "Trợ giúp",
+    "infor": "Thông tin",
+    "address": "Địa chỉ",
+    "photo": "Hình ảnh",
+    "confirm": "Xác nhận"
+  },
+  "explore": {
+    "area" : "Khu vực"
+  }
+}

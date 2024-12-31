@@ -1,0 +1,16 @@
+{
+    "Saga (Redux) Example": {
+        "description": "ReduxListApi",
+		"scope": "typescript",
+        "prefix": "rdListApi",
+        "body": [
+            "import Api from '@utils/api';",
+            "import Server, { TQuery } from '@utils/server';",
+            "",
+            "export const ${1:product}ListApi = (query: TQuery) => Api.get(`/${2:products}?\\${Server.stringifyQuery(query)\\}`);",
+            "",
+            "export const ${1:product}DetailApi = (id: number) => Api.get(`/${2:products}/\\${id\\}`);",
+            ""
+        ],
+    }
+}

@@ -1,0 +1,119 @@
+{
+  "project_info": {
+    "project_number": "212695609036",
+    "firebase_url": "https://cudidi.firebaseio.com",
+    "project_id": "cudidi",
+    "storage_bucket": "cudidi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212695609036:android:eac84c8050cebb882d1c69",
+        "android_client_info": {
+          "package_name": "com.demo.vlrnbase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212695609036-tj75qro7i0i22ce15tj8hh9lcii9l8lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD91PM1JaayXHbQipvbZZUleyGZN5x92Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212695609036-1csfl8vpft8a0ile03ri0ir3rbkcea5u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212695609036-6lcbfi6trnvul1m4hd8aniuh01evqu75.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Roomify"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212695609036:android:d1f8ad9968a0ea4b2d1c69",
+        "android_client_info": {
+          "package_name": "com.demo.vlrnbase.development"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212695609036-tj75qro7i0i22ce15tj8hh9lcii9l8lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD91PM1JaayXHbQipvbZZUleyGZN5x92Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212695609036-1csfl8vpft8a0ile03ri0ir3rbkcea5u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212695609036-6lcbfi6trnvul1m4hd8aniuh01evqu75.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Roomify"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212695609036:android:0135eae94665a9962d1c69",
+        "android_client_info": {
+          "package_name": "com.roomify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212695609036-tj75qro7i0i22ce15tj8hh9lcii9l8lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD91PM1JaayXHbQipvbZZUleyGZN5x92Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212695609036-1csfl8vpft8a0ile03ri0ir3rbkcea5u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212695609036-6lcbfi6trnvul1m4hd8aniuh01evqu75.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Roomify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

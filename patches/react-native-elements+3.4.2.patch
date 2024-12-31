@@ -1,0 +1,325 @@
+diff --git a/node_modules/react-native-elements/dist/buttons/Button.d.ts b/node_modules/react-native-elements/dist/buttons/Button.d.ts
+index 313dd2c..84eae01 100644
+--- a/node_modules/react-native-elements/dist/buttons/Button.d.ts
++++ b/node_modules/react-native-elements/dist/buttons/Button.d.ts
+@@ -24,6 +24,7 @@ export declare type ButtonProps = TouchableOpacityProps & TouchableNativeFeedbac
+     disabledTitleStyle?: StyleProp<TextStyle>;
+     raised?: boolean;
+     iconPosition?: 'left' | 'right' | 'top' | 'bottom';
++    color?: string;
+ };
+ declare const Button: RneFunctionComponent<ButtonProps>;
+ export { Button };
+diff --git a/node_modules/react-native-elements/dist/buttons/Button.js b/node_modules/react-native-elements/dist/buttons/Button.js
+index 54cb8a5..844664f 100644
+--- a/node_modules/react-native-elements/dist/buttons/Button.js
++++ b/node_modules/react-native-elements/dist/buttons/Button.js
+@@ -29,7 +29,10 @@ const Button = (props) => {
+             console.error("You need to pass a ViewComponent to use linearGradientProps !\nExample: ViewComponent={require('react-native-linear-gradient')}");
+         }
+     });
+-    const { TouchableComponent, containerStyle, onPress = () => console.log('Please attach a method to this component'), buttonStyle, type = 'solid', loading = false, loadingStyle, loadingProps: passedLoadingProps, title = '', titleProps, titleStyle: passedTitleStyle, icon, iconContainerStyle, iconRight = false, disabled = false, disabledStyle, disabledTitleStyle, raised = false, linearGradientProps, ViewComponent = View, theme, iconPosition = 'left' } = props, attributes = __rest(props, ["TouchableComponent", "containerStyle", "onPress", "buttonStyle", "type", "loading", "loadingStyle", "loadingProps", "title", "titleProps", "titleStyle", "icon", "iconContainerStyle", "iconRight", "disabled", "disabledStyle", "disabledTitleStyle", "raised", "linearGradientProps", "ViewComponent", "theme", "iconPosition"]);
++    const { TouchableComponent, containerStyle, onPress = () => console.log('Please attach a method to this component'), buttonStyle, type = 'solid', loading = false, loadingStyle, loadingProps: passedLoadingProps, title = '', titleProps, titleStyle: passedTitleStyle, icon, iconContainerStyle, iconRight = false, disabled = false, disabledStyle, disabledTitleStyle, raised = false, linearGradientProps, ViewComponent = View, theme: themeProps, iconPosition = 'left' } = props, attributes = __rest(props, ["TouchableComponent", "containerStyle", "onPress", "buttonStyle", "type", "loading", "loadingStyle", "loadingProps", "title", "titleProps", "titleStyle", "icon", "iconContainerStyle", "iconRight", "disabled", "disabledStyle", "disabledTitleStyle", "raised", "linearGradientProps", "ViewComponent", "theme", "iconPosition"]);
++    const theme = {...themeProps};
++    theme.colors = {...themeProps.colors, primary: props.color || themeProps.colors.primary}
++    
+     const handleOnPress = useCallback((evt) => {
+         if (!loading) {
+             onPress(evt);
+diff --git a/node_modules/react-native-elements/dist/config/ThemeProvider.js b/node_modules/react-native-elements/dist/config/ThemeProvider.js
+index 33bcc37..7a1e76f 100644
+--- a/node_modules/react-native-elements/dist/config/ThemeProvider.js
++++ b/node_modules/react-native-elements/dist/config/ThemeProvider.js
+@@ -1,7 +1,7 @@
+ import React from 'react';
+ import deepmerge from 'deepmerge';
+-import colors from './colors';
+-import darkColors from './colorsDark';
++import colors from '@themes/Color/colors';
++import darkColors from '@themes/Color/colorsDark';
+ export const ThemeContext = React.createContext({
+     theme: {
+         colors,
+diff --git a/node_modules/react-native-elements/dist/config/colors.d.ts b/node_modules/react-native-elements/dist/config/colors.d.ts
+index b9c1c90..0e7e2d4 100644
+--- a/node_modules/react-native-elements/dist/config/colors.d.ts
++++ b/node_modules/react-native-elements/dist/config/colors.d.ts
+@@ -1,36 +1,5 @@
+-interface PlatformColors {
+-    primary: string;
+-    secondary: string;
+-    grey: string;
+-    searchBg: string;
+-    success: string;
+-    error: string;
+-    warning: string;
+-}
+-export interface Colors {
+-    readonly primary: string;
+-    readonly secondary: string;
+-    readonly white: string;
+-    readonly black: string;
+-    readonly grey0: string;
+-    readonly grey1: string;
+-    readonly grey2: string;
+-    readonly grey3: string;
+-    readonly grey4: string;
+-    readonly grey5: string;
+-    readonly greyOutline: string;
+-    readonly searchBg: string;
+-    readonly success: string;
+-    readonly warning: string;
+-    readonly error: string;
+-    readonly disabled: string;
+-    readonly divider: string;
+-    readonly platform: {
+-        ios: PlatformColors;
+-        android: PlatformColors;
+-        web: PlatformColors;
+-        default: PlatformColors;
+-    };
+-}
++import customColors from '@themes/Color/colors';
++
++export type Colors = typeof customColors
+ declare const colors: Colors;
+ export default colors;
+diff --git a/node_modules/react-native-elements/dist/config/index.js b/node_modules/react-native-elements/dist/config/index.js
+index a07f2a6..d63c324 100644
+--- a/node_modules/react-native-elements/dist/config/index.js
++++ b/node_modules/react-native-elements/dist/config/index.js
+@@ -1,6 +1,6 @@
+ import BackgroundImage from './BackgroundImage';
+-import colors from './colors';
+-import colorsDark from './colorsDark';
++import colors from '@themes/Color/colors';
++import colorsDark from '@themes/Color/colorsDark';
+ import fonts from './fonts';
+ import ThemeProvider, { ThemeConsumer, ThemeContext, } from './ThemeProvider';
+ import withTheme from './withTheme';
+diff --git a/node_modules/react-native-elements/dist/config/theme.d.ts b/node_modules/react-native-elements/dist/config/theme.d.ts
+index aa1791e..876326c 100644
+--- a/node_modules/react-native-elements/dist/config/theme.d.ts
++++ b/node_modules/react-native-elements/dist/config/theme.d.ts
+@@ -30,6 +30,8 @@ import { FABProps } from '../buttons/FAB';
+ import { SpeedDialProps, SpeedDialActionProps } from '../buttons/SpeedDial';
+ import { LinearProgressProps } from '../linearProgress';
+ import { Colors } from './colors';
++import CustomTheme from '@themes/Theme';
++
+ declare const _default: {
+     colors: Colors;
+ };
+@@ -76,7 +78,6 @@ export interface FullTheme {
+     Tile: Partial<TileProps>;
+     Switch: Partial<SwitchProps>;
+     Tooltip: Partial<TooltipProps>;
+-    colors: RecursivePartial<Colors>;
+     Tab: Partial<TabProps>;
+     TabItem: Partial<TabItemProps>;
+     TabView: Partial<TabViewProps>;
+@@ -86,6 +87,6 @@ export interface FullTheme {
+     SpeedDialAction: Partial<SpeedDialActionProps>;
+     LinearProgress: Partial<LinearProgressProps>;
+ }
+-export declare type Theme<T = {}> = Partial<FullTheme> & T;
++export declare type Theme<T = {}> = Partial<FullTheme> & T & { colors: Colors } & typeof CustomTheme;
+ export declare type UpdateTheme = (updates: RecursivePartial<FullTheme>) => void;
+ export declare type ReplaceTheme = (updates: RecursivePartial<FullTheme>) => void;
+diff --git a/node_modules/react-native-elements/dist/config/theme.js b/node_modules/react-native-elements/dist/config/theme.js
+index 78a5986..17fd6bc 100644
+--- a/node_modules/react-native-elements/dist/config/theme.js
++++ b/node_modules/react-native-elements/dist/config/theme.js
+@@ -1,4 +1,4 @@
+-import colors from './colors';
++import colors from '@themes/Color/colors';
+ export default {
+     colors,
+ };
+diff --git a/node_modules/react-native-elements/dist/header/Header.d.ts b/node_modules/react-native-elements/dist/header/Header.d.ts
+index 9092ec7..3cd635d 100644
+--- a/node_modules/react-native-elements/dist/header/Header.d.ts
++++ b/node_modules/react-native-elements/dist/header/Header.d.ts
+@@ -27,6 +27,7 @@ export declare type HeaderProps = ViewProps & {
+     rightContainerStyle?: StyleProp<ViewStyle>;
+     children?: JSX.Element[];
+     elevated?: boolean;
++    disableSafeArea?: boolean;
+ };
+ declare const Header: RneFunctionComponent<HeaderProps>;
+ export { Header };
+diff --git a/node_modules/react-native-elements/dist/header/Header.js b/node_modules/react-native-elements/dist/header/Header.js
+index 900df51..129ad30 100644
+--- a/node_modules/react-native-elements/dist/header/Header.js
++++ b/node_modules/react-native-elements/dist/header/Header.js
+@@ -44,6 +44,7 @@ const Header = (props) => {
+     const { statusBarProps, leftComponent, centerComponent, rightComponent, leftContainerStyle, centerContainerStyle, rightContainerStyle, backgroundColor, backgroundImage, backgroundImageStyle, containerStyle, placement = 'center', barStyle, children = [], linearGradientProps, ViewComponent = linearGradientProps || !backgroundImage
+         ? View
+         : ImageBackground, theme, elevated } = props, attributes = __rest(props, ["statusBarProps", "leftComponent", "centerComponent", "rightComponent", "leftContainerStyle", "centerContainerStyle", "rightContainerStyle", "backgroundColor", "backgroundImage", "backgroundImageStyle", "containerStyle", "placement", "barStyle", "children", "linearGradientProps", "ViewComponent", "theme", "elevated"]);
++    const Wrapper = props.disableSafeArea ? View : SafeAreaView
+     return (<>
+       <StatusBar barStyle={barStyle} translucent={true} backgroundColor={backgroundColor || ((_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.primary)} {...statusBarProps}/>
+       <ViewComponent testID="headerContainer" {...attributes} style={StyleSheet.flatten([
+@@ -61,7 +62,7 @@ const Header = (props) => {
+         elevated && styles.elevatedHeader,
+         containerStyle,
+     ])} source={backgroundImage} imageStyle={backgroundImageStyle} {...linearGradientProps}>
+-        <SafeAreaView edges={['left', 'top', 'right']} style={styles.headerSafeView}>
++        <Wrapper edges={['left', 'top', 'right']} style={styles.headerSafeView}>
+           <Children style={StyleSheet.flatten([
+         placement === 'center' && styles.rightLeftContainer,
+         leftContainerStyle,
+@@ -89,7 +90,7 @@ const Header = (props) => {
+     ])} placement="right">
+             {children[2] || rightComponent}
+           </Children>
+-        </SafeAreaView>
++        </Wrapper>
+       </ViewComponent>
+     </>);
+ };
+diff --git a/node_modules/react-native-elements/dist/searchbar/SearchBar-android.js b/node_modules/react-native-elements/dist/searchbar/SearchBar-android.js
+index 1bfd2b4..8cb8f93 100644
+--- a/node_modules/react-native-elements/dist/searchbar/SearchBar-android.js
++++ b/node_modules/react-native-elements/dist/searchbar/SearchBar-android.js
+@@ -82,10 +82,10 @@ class SearchBar extends Component {
+             hasFocus: false,
+             isEmpty: value ? value === '' : true,
+         };
+-        Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
++        this.keyboardListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+     }
+     componentWillUnmount() {
+-        Keyboard.removeListener('keyboardDidHide', this._keyboardDidHide);
++        this.keyboardListener?.remove();
+     }
+     render() {
+         var _a;
+diff --git a/node_modules/react-native-elements/dist/searchbar/SearchBar-default.js b/node_modules/react-native-elements/dist/searchbar/SearchBar-default.js
+index 7f75eb0..57333c2 100644
+--- a/node_modules/react-native-elements/dist/searchbar/SearchBar-default.js
++++ b/node_modules/react-native-elements/dist/searchbar/SearchBar-default.js
+@@ -20,7 +20,7 @@ const defaultSearchIcon = (theme) => {
+         type: 'material',
+         size: 18,
+         name: 'search',
+-        color: (_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.grey3,
++        color: (_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.grey6,
+     });
+ };
+ const defaultClearIcon = (theme) => {
+@@ -29,7 +29,7 @@ const defaultClearIcon = (theme) => {
+         type: 'material',
+         size: 18,
+         name: 'clear',
+-        color: (_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.grey3,
++        color: (_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.grey6,
+     });
+ };
+ class SearchBar extends React.Component {
+@@ -88,7 +88,7 @@ class SearchBar extends React.Component {
+             this.input = input;
+         }} placeholderTextColor={placeholderTextColor} inputStyle={StyleSheet.flatten([
+             {
+-                color: (_d = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _d === void 0 ? void 0 : _d.grey3,
++                color: (_d = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _d === void 0 ? void 0 : _d.grey6,
+                 marginLeft: 10,
+             },
+             inputStyle,
+@@ -98,10 +98,10 @@ class SearchBar extends React.Component {
+                 borderRadius: 3,
+                 overflow: 'hidden',
+                 minHeight: 30,
+-                backgroundColor: (_e = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _e === void 0 ? void 0 : _e.searchBg,
++                backgroundColor: (_e = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _e === void 0 ? void 0 : _e.grey3,
+             },
+             lightTheme && {
+-                backgroundColor: (_f = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _f === void 0 ? void 0 : _f.grey4,
++                backgroundColor: (_f = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _f === void 0 ? void 0 : _f.grey3,
+             },
+             round && styles.round,
+             inputContainerStyle,
+diff --git a/node_modules/react-native-elements/dist/text/Text.d.ts b/node_modules/react-native-elements/dist/text/Text.d.ts
+index 8d4e1b3..d0bbde2 100644
+--- a/node_modules/react-native-elements/dist/text/Text.d.ts
++++ b/node_modules/react-native-elements/dist/text/Text.d.ts
+@@ -6,11 +6,11 @@ export declare type TextProps = TextProperties & {
+     h1?: boolean;
+     h2?: boolean;
+     h3?: boolean;
+-    h4?: boolean;
++    subtitle?: boolean;
+     h1Style?: StyleProp<TextStyle>;
+     h2Style?: StyleProp<TextStyle>;
+     h3Style?: StyleProp<TextStyle>;
+-    h4Style?: StyleProp<TextStyle>;
++    subtitleStyle?: StyleProp<TextStyle>;
+ };
+ declare const TextElement: RneFunctionComponent<TextProps>;
+ export { TextElement };
+@@ -19,20 +19,20 @@ declare const _default: React.FunctionComponent<Pick<TextProperties & {
+     h1?: boolean;
+     h2?: boolean;
+     h3?: boolean;
+-    h4?: boolean;
++    subtitle?: boolean;
+     h1Style?: StyleProp<TextStyle>;
+     h2Style?: StyleProp<TextStyle>;
+     h3Style?: StyleProp<TextStyle>;
+-    h4Style?: StyleProp<TextStyle>;
+-} & Partial<import("../config").ThemeProps<TextProps>>, "style" | "onLayout" | "testID" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors" | "allowFontScaling" | "ellipsizeMode" | "lineBreakMode" | "numberOfLines" | "onTextLayout" | "onPress" | "onLongPress" | "nativeID" | "maxFontSizeMultiplier" | "adjustsFontSizeToFit" | "minimumFontScale" | "suppressHighlighting" | "selectable" | "selectionColor" | "textBreakStrategy" | "dataDetectorType" | "h1" | "h2" | "h3" | "h4" | "h1Style" | "h2Style" | "h3Style" | "h4Style">> | React.ForwardRefExoticComponent<TextProperties & {
++    subtitleStyle?: StyleProp<TextStyle>;
++} & Partial<import("../config").ThemeProps<TextProps>>, "style" | "onLayout" | "testID" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors" | "allowFontScaling" | "ellipsizeMode" | "lineBreakMode" | "numberOfLines" | "onTextLayout" | "onPress" | "onLongPress" | "nativeID" | "maxFontSizeMultiplier" | "adjustsFontSizeToFit" | "minimumFontScale" | "suppressHighlighting" | "selectable" | "selectionColor" | "textBreakStrategy" | "dataDetectorType" | "h1" | "h2" | "h3" | "subtitle" | "h1Style" | "h2Style" | "h3Style" | "subtitleStyle">> | React.ForwardRefExoticComponent<TextProperties & {
+     style?: StyleProp<TextStyle>;
+     h1?: boolean;
+     h2?: boolean;
+     h3?: boolean;
+-    h4?: boolean;
++    subtitle?: boolean;
+     h1Style?: StyleProp<TextStyle>;
+     h2Style?: StyleProp<TextStyle>;
+     h3Style?: StyleProp<TextStyle>;
+-    h4Style?: StyleProp<TextStyle>;
++    subtitleStyle?: StyleProp<TextStyle>;
+ } & Partial<import("../config").ThemeProps<TextProps>>>;
+ export default _default;
+diff --git a/node_modules/react-native-elements/dist/text/Text.js b/node_modules/react-native-elements/dist/text/Text.js
+index bd78fed..b16ae9b 100644
+--- a/node_modules/react-native-elements/dist/text/Text.js
++++ b/node_modules/react-native-elements/dist/text/Text.js
+@@ -16,17 +16,17 @@ import { patchWebProps } from '../helpers';
+ import normalize from '../helpers/normalizeText';
+ const TextElement = (props) => {
+     var _a;
+-    const { style, theme, children = '', h1, h2, h3, h4, h1Style, h2Style, h3Style, h4Style } = props, rest = __rest(props, ["style", "theme", "children", "h1", "h2", "h3", "h4", "h1Style", "h2Style", "h3Style", "h4Style"]);
++    const { style, theme, children = '', h1, h2, h3, subtitle, h1Style, h2Style, h3Style, subtitleStyle } = props, rest = __rest(props, ["style", "theme", "children", "h1", "h2", "h3", "subtitle", "h1Style", "h2Style", "h3Style", "subtitleStyle"]);
+     return (<Text style={StyleSheet.flatten([
+         Object.assign(Object.assign({}, Platform.select({
+             android: Object.assign({}, fonts.android.regular),
+         })), { color: (_a = theme === null || theme === void 0 ? void 0 : theme.colors) === null || _a === void 0 ? void 0 : _a.black }),
+         style,
+-        (h1 || h2 || h3 || h4) && styles.bold,
++        (h1 || h2 || h3 || subtitle) && styles.bold,
+         h1 && StyleSheet.flatten([{ fontSize: normalize(40) }, h1Style]),
+         h2 && StyleSheet.flatten([{ fontSize: normalize(34) }, h2Style]),
+         h3 && StyleSheet.flatten([{ fontSize: normalize(28) }, h3Style]),
+-        h4 && StyleSheet.flatten([{ fontSize: normalize(22) }, h4Style]),
++        subtitle && StyleSheet.flatten([{ fontSize: normalize(22) }, subtitleStyle]),
+     ])} {...patchWebProps(rest)}>
+       {children}
+     </Text>);
+@@ -35,12 +35,12 @@ TextElement.defaultProps = {
+     h1: false,
+     h2: false,
+     h3: false,
+-    h4: false,
++    subtitle: false,
+     style: {},
+     h1Style: {},
+     h2Style: {},
+     h3Style: {},
+-    h4Style: {},
++    subtitleStyle: {},
+ };
+ const styles = StyleSheet.create({
+     bold: Object.assign({}, Platform.select({

@@ -1,0 +1,11 @@
+{
+    "Get API": {
+        "description": "GetAPI",
+		"scope": "typescript",
+        "prefix": "codeGetAPI",
+        "body": [
+            "export const $1Api = (query: TQuery) => Api.get(`/$2?\\${Server.stringifyQuery(query)\\}`);",
+            ""
+        ],
+    }
+}

@@ -1,0 +1,124 @@
+name: Testing
+
+on:
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  install-and-js-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: YARN Cache
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install yarn dependencies
+        run: |
+          echo "${{ secrets.ENV }}" > .env
+          sed -i -e 's/ && cd ios && pod install && cd ..//g' package.json
+          yarn install
+      - name: Lint Test
+        run: |
+          yarn lint
+      - name: JS Test
+        run: |
+          yarn test
+
+  android-test:
+    needs: install-and-js-test
+    runs-on: ubuntu-latest
+    steps:
+      # Node
+      - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: YARN Cache
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: YARN Install
+        run: |
+          echo "${{ secrets.ENV }}" > .env
+          sed -i -e 's/ && cd ios && pod install && cd ..//g' package.json
+          yarn install
+
+      # Build
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+      - name: Bundle Cache
+        uses: actions/cache@v2
+        with:
+          path: android/vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      # - name: Android Test
+      #   run: |
+      #     cd android && ./gradlew assembleRelease
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: app-release.apk
+      #     path: android/app/build/outputs/apk/release/
+      - name: Setup fastlane
+        run: cd android && bundle install
+      - name: Android Test
+        run: |
+          cd android && fastlane test
+
+  # ios-test:
+  #   runs-on: macOS-latest
+  #   steps:
+  #     # Node
+  #     - uses: actions/checkout@v2
+  #     - name: Get yarn cache directory path
+  #       id: yarn-cache-dir-path
+  #       run: echo "::set-output name=dir::$(yarn cache dir)"
+  #     - name: YARN Cache
+  #       uses: actions/cache@v2
+  #       id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+  #       with:
+  #         path: |
+  #           ${{ steps.yarn-cache-dir-path.outputs.dir }}
+  #           **/node_modules
+  #         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-yarn-
+  #     - name: YARN Install
+  #       run: |
+  #         echo "${{ secrets.ENV }}" > .env
+  #         yarn install
+
+  #     # Build
+  #     - name: Pods Cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ios/Pods
+  #         key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-pods-
+  #     - name: Provisioning profile
+  #       run: cd ios && fastlane codesigning team_id:${{ secrets.APPLE_TEAM_ID }} keychain_password:${{ secrets. APPLE_KEYCHAIN_PASSWORD }}  certificate_password:${{ secrets. APPLE_CERTIFICATE_PASSWORD }}
+  #     - name: Setup fastlane
+  #       run: cd ios && bundle install
+  #     - name: iOS Test
+  #       run: |
+  #         cd ios && bundle exec fastlane test

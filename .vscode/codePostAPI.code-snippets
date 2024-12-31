@@ -1,0 +1,11 @@
+{
+    "Post API": {
+        "description": "PostAPI",
+		"scope": "typescript",
+        "prefix": "codePostAPI",
+        "body": [
+            "export const $1Api = (data: any) => Api.post('/$2', data);",
+            ""
+        ],
+    }
+}

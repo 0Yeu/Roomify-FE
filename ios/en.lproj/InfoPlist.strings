@@ -1,0 +1,21 @@
+/* 
+  InfoPlist.strings
+  VLRNBase
+
+  Created by Vilagon on 8/26/21.
+  
+*/
+
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "YOUR TEXT";
+
+"NSLocationAlwaysUsageDescription" = "YOUR TEXT";
+
+"NSLocationWhenInUseUsageDescription" = "YOUR TEXT";
+
+"NSCameraUsageDescription" = "YOUR TEXT";
+
+"NSPhotoLibraryAddUsageDescription" = "YOUR TEXT";
+
+"NSPhotoLibraryUsageDescription" = "YOUR TEXT";
+
+"NSMicrophoneUsageDescription" = "YOUR TEXT";
