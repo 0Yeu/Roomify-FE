@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import _ from 'lodash';
 
 type TCollection = 'NotificationTokens';
 
@@ -17,18 +17,18 @@ class CFirestore {
     return CFirestore._instance;
   }
 
-  getCollection = (name: TCollection) => firestore().collection(name);
+  getCollection = (name: string) => firestore().collection(name);
 
-  get = async (name: TCollection, condition?: any[]) => {
+  get = async (name: string, condition?: any[]) => {
     if (condition) {
       return firestore().collection(name).where(condition[0], condition[1], condition[2]).get();
     }
     return firestore().collection(name).get();
   };
 
-  find = async (name: TCollection, id: string) => firestore().collection(name).doc(id).get();
+  find = async (name: string, id: string) => firestore().collection(name).doc(id).get();
 
-  add = async (collection: TCollection, data: any) => {
+  add = async (collection: string, data: any) => {
     if (!_.isUndefined(data.id)) {
       return firestore()
         .collection(collection)
@@ -40,18 +40,18 @@ class CFirestore {
       .add(_.omit(data, 'id'));
   };
 
-  update = async (collection: TCollection, id: string, data: any) => firestore()
+  update = async (collection: string, id: string, data: any) => firestore()
     .collection(collection)
     .doc(id)
     .update(data);
 
-  delete = async (collection: TCollection, id: string) => firestore()
+  delete = async (collection: string, id: string) => firestore()
     .collection(collection)
     .doc(id)
     .delete();
 
   // eslint-disable-next-line max-len
-  listen = (collection: TCollection, condition: any[], fn: (change:FirebaseFirestoreTypes.DocumentChange<FirebaseFirestoreTypes.DocumentData>) => any) => {
+  listen = (collection: string, condition: any[], fn: (change: FirebaseFirestoreTypes.DocumentChange<FirebaseFirestoreTypes.DocumentData>) => any) => {
     firestore().collection(collection).where(condition[0], condition[1], condition[2])
       .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
         snapshot.docChanges().forEach((change) => {

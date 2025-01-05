@@ -815,6 +815,8 @@ PODS:
     - React-Core
   - react-native-geolocation (2.0.2):
     - React
+  - react-native-get-random-values (1.11.0):
+    - React-Core
   - react-native-google-maps (0.29.2):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
@@ -825,8 +827,6 @@ PODS:
     - React-Core
   - react-native-netinfo (6.0.1):
     - React-Core
-  - react-native-panorama-view (1.0.1):
-    - React
   - react-native-safe-area-context (3.3.0):
     - React-Core
   - react-native-splash-screen (3.2.0):
@@ -1052,11 +1052,11 @@ DEPENDENCIES:
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-flipper (from `../node_modules/react-native-flipper`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
+  - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
-  - "react-native-panorama-view (from `../node_modules/@lightbase/react-native-panorama-view`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1197,6 +1197,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-flipper"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
+  react-native-get-random-values:
+    :path: "../node_modules/react-native-get-random-values"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-image-resizer:
@@ -1205,8 +1207,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
-  react-native-panorama-view:
-    :path: "../node_modules/@lightbase/react-native-panorama-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-splash-screen:
@@ -1351,11 +1351,11 @@ SPEC CHECKSUMS:
   react-native-document-picker: a7950caaee8587002c9acbc7fe497a342094d93a
   react-native-flipper: 58bc8d50ff7b97cc461cdaf3639fa7f076dbfa76
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
+  react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-google-maps: f22ffee71f3c538e0dd9963303c79b650a2870c0
   react-native-image-resizer: d9fb629a867335bdc13230ac2a58702bb8c8828f
   react-native-maps: 8ceefe2c914078dbd932fd36950459f6247a4e8e
   react-native-netinfo: 7cb7877ff31ebeb3d03ce0b4fbb616f121ddd859
-  react-native-panorama-view: b4a8345f26147aa22991af14bf3c4cad7f44e9ea
   react-native-safe-area-context: 61c8c484a3a9e7d1fda19f7b1794b35bbfd2262a
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
@@ -1400,6 +1400,6 @@ SPEC CHECKSUMS:
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 0cdc416099798d47ff80e6bb6e1d5d5a3ce99f3f
+PODFILE CHECKSUM: 6d185fdbd3c709b030d6073d3a145ed39e5d359c
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.16.2
