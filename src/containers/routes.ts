@@ -33,6 +33,9 @@ const Routes = {
   SIGNUP_SCREEN: 'SIGNUP_SCREEN',
   // Auth
   DETAIL_ROOMMATE_SCREEN: 'DETAIL_ROOMMATE_SCREEN',
+  // Chat
+  CHAT_SCREEN: 'CHAT_SCREEN',
+  CHAT_ROOM: 'CHAT_ROOM',
 };
 
 export default Routes;

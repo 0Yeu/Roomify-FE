@@ -1,24 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
-import { Icon, ThemeContext } from 'react-native-elements';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AppView from '@utils/appView';
-import { StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useTranslation } from 'react-i18next';
 import Routes from '@containers/routes';
 import IconSource from '@icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import colors from '@themes/Color/colors';
-import MoreScreen from './More/screens/index';
-import moreStack from './More/routes';
-import homeStack from './Home/routes';
-import MainDrawer from './index.drawer';
+import AppView from '@utils/appView';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet } from 'react-native';
+import { Icon, ThemeContext } from 'react-native-elements';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Chat from './Chat';
 import ExploreScreen from './Explore/screens';
-import SavedScreen from './Saved';
 import NotificationScreen from './Notification';
 import ProfileScreen from './Profile/screens';
 import ListRoommate from './Roommate';
+import SavedScreen from './Saved';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -62,8 +59,8 @@ export default function MainBottomTab(props: any) {
           borderTopColor,
           backgroundColor,
         },
-        customStyle,
-        // AppView.shadow()
+          customStyle,
+          // AppView.shadow()
         ]),
         tabBarItemStyle: {
           borderRadius,
@@ -149,6 +146,18 @@ export default function MainBottomTab(props: any) {
               fill={focused ? colors.primary : colors.color363636}
             />
           )
+        }}
+      />
+      <BottomTabs.Screen
+        name={Routes.CHAT_SCREEN}
+        component={Chat}
+        options={{
+          tabBarLabel: t('bottom_tab:Trò chuyện'),
+          tabBarIcon: ({ focused, color, size }) => (
+            <IconSource.ChatIcon
+              fill={focused ? colors.primary : colors.color363636}
+            />
+          ),
         }}
       />
     </BottomTabs.Navigator>

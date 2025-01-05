@@ -1,20 +1,22 @@
-import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import Routes from '@containers/routes';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
+import ChatRoom from '../Chat/ChatRoom';
 import DetailProperty from './screens/DetailProperty';
 import DetailRoom from './screens/DetailRoom';
-import PropertyByCategory from './screens/PropertyByCategory';
-import SearchScreen from './screens/SearchScreen';
 import MapProperties from './screens/MapProperties';
+import PropertyByCategory from './screens/PropertyByCategory';
 import PropertyByCity from './screens/PropertyByCity';
-import View360DegreesImage from './screens/View360DegreesImage';
 import PropertyNearMe from './screens/PropertyNearMe';
+import SearchScreen from './screens/SearchScreen';
+import View360DegreesImage from './screens/View360DegreesImage';
 
 const Stack = createStackNavigator();
 
 export default function ExploreStack() {
   return (
     <>
+      <Stack.Screen name={Routes.CHAT_ROOM} component={ChatRoom} />
       <Stack.Screen name={Routes.DETAIL_PROPERTY} component={DetailProperty} />
       <Stack.Screen name={Routes.DETAIL_ROOM} component={DetailRoom} />
       <Stack.Screen name={Routes.PROPERTY_BY_CATEGORY} component={PropertyByCategory} />
